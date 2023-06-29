@@ -1,0 +1,161 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+button, .btn{
+    cursor: pointer;
+    padding: 5px 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: none;
+    outline: 0 none;
+    background: darkcyan;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 1px solid darkcyan;
+    font: 400 16px/1.5 'Quicksand', sans-serif;
+    transition: all .15s ease;
+}
+button:hover, .btn:hover{
+    color: darkcyan;
+    background: #fff;
+}
+
+body{
+    font: 400 16px/1.5 'Quicksand', sans-serif;
+}
+
+p{
+    margin: 0;
+}
+
+table{
+    width: 100%;
+    margin-bottom: 50px;
+    border-collapse: collapse;
+}
+table td{
+    padding: 5px 10px;
+    vertical-align: top;
+    border-top: 1px solid darkcyan;
+}
+table td > table{
+    margin-bottom: 0;
+}
+table td > table td{
+    border-top: 0;
+    padding-left: 0;
+}
+
+.container{
+    max-width: 90%;
+    padding: 0 20px;
+    margin: 50px auto;
+}
+
+
+/*
+    USERS
+ */
+.user-list{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -20px;
+}
+.user-list-title{
+    border: 0;
+    flex: 1 1 100% !important;
+}
+.user-list li{
+    flex: 0 1 50%;
+    font-size: 20px;
+    padding: 0 20px;
+}
+.user-list li + li{
+    margin-top: 30px;
+}
+.user-list li + li > div{
+    padding: 10px 0;
+    border-top: 1px solid darkcyan;
+}
+.user-detail-link{
+    margin-top: 5px;
+}
+
+/*
+    USER DETAILS
+ */
+.user-button{
+    width: 100%;
+    font-size: 20px;
+}
+.user-posts-list{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px -20px;
+}
+.user-posts-list-title{
+    flex: 1 1 100% !important;
+}
+.user-posts-list li{
+    flex: 0 1 20%;
+    padding: 0 20px;
+}
+.user-posts-list li > div{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+.user-posts-list li > div > h4{
+    margin: 5px 0 20px;
+    text-transform: capitalize;
+}
+.user-posts-list li + li{
+    margin-top: 40px;
+}
+.user-posts-list li + li > div{
+    border-top: 1px solid darkcyan;
+}
+.user-posts-list li > div > p{
+    margin-top: auto;
+}
+
+
+/*
+    POST DETAILS
+ */
+.post-title{
+    text-transform: capitalize;
+}
+.post-content{
+    margin: 50px 0;
+}
+.comments-list{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -20px;
+}
+.comments-list li{
+    flex: 0 1 25%;
+    margin-top: 20px;
+    padding: 0 20px;
+}
+.comments-list li > div{
+    padding-top: 5px;
+    border-top: 1px solid darkcyan;
+}
+.comments-body{
+    margin-top: 10px;
+}

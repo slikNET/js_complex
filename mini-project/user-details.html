@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container" id="container">
+
+</div>
+
+<script>
+    const url = new URL(location.href);
+    const userId = url.searchParams.get('id');
+
+    const container = document.getElementById('container');
+
+    function HTML(el, html, className = ''){
+        const htmlEl = document.createElement(el);
+        if( className !== '' ){
+            htmlEl.classList.add(className);
+        }
+        htmlEl.innerHTML = html;
+
+        return htmlEl;
+    }
+    function getUserInfo(user){
+        const userTable = document.createElement('table');
+
+        Object.entries(user).forEach(function ([key, value], i) {
+            const row     = document.createElement('tr');
+            const colName = HTML('td', `<strong>${key.toUpperCase()}:</strong>`);
+            const colVal  = document.createElement('td');
+
+            if(typeof value === 'object'){
+                colVal.appendChild(getUserInfo(value));
+            }else{
+                colVal.innerHTML = `${value}`;
+            }
+
+            row.appendChild(colName);
+            row.appendChild(colVal);
+            userTable.appendChild(row);
+        });
+
+        return userTable;
+    }
+
+    function getPostsByUserId(userId){
+        fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
+            .then(res => res.json())
+            .then(posts => {
+                const head = '<li class="user-posts-list-title"><h2>User\'s Posts</h2></li>';
+                const ul =  HTML('ul', head, 'user-posts-list');
+
+                for (const post of posts) {
+                    const postInfo = `<div><h4>${post.title}</h4><p><a href="post-details.html?id=${post.id}" class="btn">Learn More</a></p></div>`;
+                    const li =  HTML('li', postInfo);
+
+                    ul.appendChild(li);
+                }
+
+                container.appendChild(ul);
+            })
+    }
+
+    fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+        .then(res => res.json())
+        .then(user => {
+            const button =  HTML('button', 'posts of current user', 'user-button');
+
+            button.setAttribute('type','button');
+
+            container.append(getUserInfo(user), button);
+
+            button.onclick = function (e){
+                getPostsByUserId(userId)
+            }
+        })
+</script>
+</body>
+</html>
